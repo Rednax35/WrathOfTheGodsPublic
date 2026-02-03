@@ -10,10 +10,6 @@ namespace NoxusBoss.Assets.Fonts;
 
 public class FontRegistry : ModSystem
 {
-    // Historically Calamity received errors when attempting to load fonts on Linux systems for their MGRR boss HP bar.
-    // Out of an abundance of caution, this mod implements the same solution as them and only uses the font on windows operating systems.
-    public static bool CanLoadFonts => Environment.OSVersion.Platform == PlatformID.Win32NT;
-
     public static FontRegistry Instance => ModContent.GetInstance<FontRegistry>();
 
     public static readonly GameCulture EnglishGameCulture = GameCulture.FromCultureName(GameCulture.CultureName.English);
@@ -27,7 +23,7 @@ public class FontRegistry : ModSystem
     {
         get
         {
-            if (Main.netMode != NetmodeID.Server && CanLoadFonts)
+            if (Main.netMode != NetmodeID.Server)
                 return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/DivineLanguageText", AssetRequestMode.ImmediateLoad).Value;
 
             return FontAssets.MouseText.Value;
@@ -42,15 +38,11 @@ public class FontRegistry : ModSystem
             if (ChineseGameCulture.IsActive)
                 return FontAssets.DeathText.Value;
 
-            if (CanLoadFonts)
-            {
-                if (RussianGameCulture.IsActive)
-                    return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/NamelessDeityTextRussian", AssetRequestMode.ImmediateLoad).Value;
+            if (RussianGameCulture.IsActive)
+                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/NamelessDeityTextRussian", AssetRequestMode.ImmediateLoad).Value;
 
-                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/NamelessDeityText", AssetRequestMode.ImmediateLoad).Value;
-            }
+            return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/NamelessDeityText", AssetRequestMode.ImmediateLoad).Value;
 
-            return FontAssets.MouseText.Value;
         }
     }
 
@@ -62,9 +54,8 @@ public class FontRegistry : ModSystem
             if (ChineseGameCulture.IsActive)
                 return FontAssets.DeathText.Value;
 
-            if (CanLoadFonts)
-                if (RussianGameCulture.IsActive)
-                    return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/AvatarPoemTextRussian", AssetRequestMode.ImmediateLoad).Value;
+            if (RussianGameCulture.IsActive)
+                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/AvatarPoemTextRussian", AssetRequestMode.ImmediateLoad).Value;
 
             return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/AvatarPoemText", AssetRequestMode.ImmediateLoad).Value;
         }
@@ -78,10 +69,8 @@ public class FontRegistry : ModSystem
             if (ChineseGameCulture.IsActive || RussianGameCulture.IsActive)
                 return FontAssets.DeathText.Value;
 
-            if (CanLoadFonts)
-                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/DraedonText", AssetRequestMode.ImmediateLoad).Value;
+            return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/DraedonText", AssetRequestMode.ImmediateLoad).Value;
 
-            return FontAssets.MouseText.Value;
         }
     }
 
@@ -93,15 +82,10 @@ public class FontRegistry : ModSystem
             if (ChineseGameCulture.IsActive)
                 return FontAssets.DeathText.Value;
 
-            if (CanLoadFonts)
-            {
-                if (RussianGameCulture.IsActive)
-                    return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/NamelessDeityTextRussian", AssetRequestMode.ImmediateLoad).Value;
+            if (RussianGameCulture.IsActive)
+                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/NamelessDeityTextRussian", AssetRequestMode.ImmediateLoad).Value;
 
-                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynText", AssetRequestMode.ImmediateLoad).Value;
-            }
-
-            return FontAssets.MouseText.Value;
+            return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynText", AssetRequestMode.ImmediateLoad).Value;
         }
     }
 
@@ -113,15 +97,10 @@ public class FontRegistry : ModSystem
             if (ChineseGameCulture.IsActive)
                 return FontAssets.DeathText.Value;
 
-            if (CanLoadFonts)
-            {
-                if (RussianGameCulture.IsActive)
-                    return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynTextItalicsRussian", AssetRequestMode.ImmediateLoad).Value;
+            if (RussianGameCulture.IsActive)
+                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynTextItalicsRussian", AssetRequestMode.ImmediateLoad).Value;
 
-                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynTextItalics", AssetRequestMode.ImmediateLoad).Value;
-            }
-
-            return FontAssets.MouseText.Value;
+            return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynTextItalics", AssetRequestMode.ImmediateLoad).Value;
         }
     }
 
@@ -133,10 +112,8 @@ public class FontRegistry : ModSystem
             if (ChineseGameCulture.IsActive)
                 return FontAssets.DeathText.Value;
 
-            if (CanLoadFonts)
-                return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynFightDialogue", AssetRequestMode.ImmediateLoad).Value;
+            return Mod.Assets.Request<DynamicSpriteFont>("Assets/Fonts/SolynFightDialogue", AssetRequestMode.ImmediateLoad).Value;
 
-            return FontAssets.MouseText.Value;
         }
     }
 }
